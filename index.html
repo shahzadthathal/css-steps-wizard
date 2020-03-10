@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>CSS Steps Wizard</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <style>
+       /*!
+        * SmartWizard v4.4.x
+        * jQuery Wizard Plugin
+        * http://www.techlaboratory.net/smartwizard
+        *
+        * Created by Dipu Raj
+        * http://dipuraj.me
+        *
+        * Licensed under the terms of MIT License
+        * https://github.com/techlab/SmartWizard/blob/master/LICENSE
+        */
+
+        /* SmartWizard Theme: Circles */
+        .sw-theme-circles {
+        }
+
+        .sw-theme-circles .sw-container {
+            min-height: 300px;
+        }
+
+        .sw-theme-circles .step-content {
+            padding: 10px 0;
+            background-color: #FFF;
+            text-align: left;
+        }
+
+        .sw-theme-circles .sw-toolbar {
+            background: #fff;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 0 !important;
+        }
+
+        .sw-theme-circles .sw-toolbar-top {
+        }
+
+        .sw-theme-circles .sw-toolbar-bottom {
+            border-top-color: #ddd !important;
+            border-bottom-color: #ddd !important;
+        }
+
+        .sw-theme-circles > ul.step-anchor {
+            position: relative;
+            border: none;
+            list-style: none;
+        }
+        .sw-theme-circles > ul.step-anchor > li:after {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            bottom: 0;
+            width: 100px;
+            height: 2px;
+            background-color: #dddddd;
+            border-radius: 3px;
+            z-index: 0;
+            margin-left: 33px;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li:last-child:after {
+            width: 0px;
+            margin-left: 0px;
+            background-color: unset;
+        }
+        .sw-theme-circles > ul.step-anchor > li:nth-last-child(2):after {
+            width: 80px;
+        }
+        .sw-theme-circles > ul.step-anchor > li.selected:after {
+            background-color: #008000;
+        }
+
+        .sw-theme-circles > li.selected::after{
+            background: #008000;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li {
+            border: none;
+            margin-left: 30px;
+            z-index: 98;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li  {
+            background: #494949;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 50%;
+            box-shadow: inset 0px 0px 0px 10px #494949 !important;
+            text-decoration: none;
+            outline-style: none;
+            z-index: 99;
+            color: #fff;
+            line-height: 1;
+            font-size: x-large;
+            font-weight: bold;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li:hover{
+            border: 2px solid #FF0244;
+            background: #FF0244;
+            color: #fff;
+            width: 65px;
+            height: 65px;
+            box-shadow: inset 0px 0px 0px 10px #494949 !important;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.active  {
+            border: 2px solid #FF0244;
+            background: #FF0244;
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 50%;
+            box-shadow: inset 0px 0px 0px 10px #494949 !important;
+            text-decoration: none;
+            outline-style: none;
+            z-index: 99;
+            line-height: 1;
+            font-size: x-large;
+            font-weight: bold;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.selected  {
+            border: 2px solid #008000;
+            background: #008000;
+            color: #fff;
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 50%;
+            box-shadow: inset 0px 0px 0px 10px #494949 !important;
+            text-decoration: none;
+            outline-style: none;
+            z-index: 99;
+            line-height: 1;
+            font-size: x-large;
+            font-weight: bold;
+        }
+
+        .navbar-brand{
+            font-size: xx-large;
+            font-weight: bold;
+            font-family: initial;
+        }
+        .nav-link:hover{
+            border-color:unset!important;
+        }
+        .nav-tabs .nav-link{
+            border: unset!important;
+        }
+        .sw-theme-circles > ul.step-anchor > li > a > small {
+            position: relative;
+            bottom: -40px;
+            color: #ccc;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.active > a > small {
+            color: #FF0244;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.done > a {
+            border-color: #5cb85c;
+            color: #fff;
+            background: #5cb85c;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.done > a > small {
+            color: #5cb85c;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.danger > a {
+            border-color: #d9534f;
+            color: #d9534f;
+            background: #fff;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.danger > a > small {
+            color: #d9534f;
+        }
+
+        .sw-theme-circles > ul.step-anchor > li.disabled > a, .sw-theme-circles > ul.step-anchor > li.disabled > a:hover {
+            color: #eee !important;
+        }
+
+        .sw-theme-circles a{
+            color:#fff;
+        }
+
+   </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand ml-3" href="#">CSS Steps Wizard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse sw-theme-circles" id="navbarText">
+            <ul class="navbar-nav mr-auto nav nav-tabs step-anchor ml-5">
+                <li onclick="changeStep(this, 1)" class="nav-item active"><a  href="#step-1" class="nav-link">1</a></li>
+                <li onclick="changeStep(this,2)" class="nav-item "><a  href="#step-2" class="nav-link">2</a></li>
+                <li onclick="changeStep(this,3)" class="nav-item"><a  href="#step-3" class="nav-link">3</a></li>
+                <li onclick="changeStep(this,4)" class="nav-item"><a  href="#step-4" class="nav-link">4</a></li>
+                <li onclick="changeStep(this,5)" class="nav-item"><a  href="#step-3" class="nav-link">5</a></li>
+                <li onclick="changeStep(this,6)" class="nav-item"><a  href="#step-4" class="nav-link">6</a></li>
+            </ul>
+            <span class="navbar-text text-white ml-3">
+            <b>+111xxxxxxx</b>
+            </span>
+        </div>
+    </nav>
+    <form action="#" id="winForm" role="form" data-toggle="validator" method="post" accept-charset="utf-8">
+
+    <div class="row">
+        <div class="col-sm">
+            <h1>CSS Steps Wizard</h1>
+                <div class="navbar navbar-expand-lg sw-theme-circles">
+                    <ul class="navbar-nav  nav nav-tabs step-anchor">
+                        <li onclick="changeStep(this, 1)" class="nav-item active"><a  href="#step-1" class="nav-link">1</a></li>
+                        <li onclick="changeStep(this,2)" class="nav-item "><a  href="#step-2" class="nav-link">2</a></li>
+                        <li onclick="changeStep(this,3)" class="nav-item"><a  href="#step-3" class="nav-link">3</a></li>
+                        <li onclick="changeStep(this,4)" class="nav-item"><a  href="#step-4" class="nav-link">4</a></li>
+                        <li onclick="changeStep(this,5)" class="nav-item"><a  href="#step-3" class="nav-link">5</a></li>
+                        <li onclick="changeStep(this,6)" class="nav-item"><a  href="#step-4" class="nav-link">6</a></li>
+                    </ul>
+                </div>
+            
+        </div>
+        <div class="col-sm">
+            <h2>Simple CSS Steps Wizard</h2>
+            <div class="navbar navbar-expand-lg sw-theme-circles">
+                <ul class="navbar-nav  nav nav-tabs step-anchor">
+                    <li onclick="changeStep(this, 1)" class="nav-item active"><a  href="#step-1" class="nav-link">1</a></li>
+                    <li onclick="changeStep(this,2)" class="nav-item "><a  href="#step-2" class="nav-link">2</a></li>
+                    <li onclick="changeStep(this,3)" class="nav-item"><a  href="#step-3" class="nav-link">3</a></li>
+                    <li onclick="changeStep(this,4)" class="nav-item"><a  href="#step-4" class="nav-link">4</a></li>
+                    <li onclick="changeStep(this,5)" class="nav-item"><a  href="#step-3" class="nav-link">5</a></li>
+                    <li onclick="changeStep(this,6)" class="nav-item"><a  href="#step-4" class="nav-link">6</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <script>
+        function changeStep(obj,i){
+            $(obj).prev().removeClass('active');
+            $(obj).prev().addClass('selected');
+            $(obj).addClass('active');
+        }
+    </script>
+
+</body>
+</html>
